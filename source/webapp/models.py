@@ -19,14 +19,14 @@ class Article(models.Model):
 
 
 class Comment(models.Model):
-    commented_to = models.OneToOneField(Article, on_delete=models.CASCADE,
-                                        related_name='comment_to', verbose_name='Комментарий к статье')
+    commented_to = models.OneToOneField(Article, on_delete=models.CASCADE, null=True,
+                                        related_name='comment_to', verbose_name='Комментарий к статье', blank=True)
     comment = models.TextField(max_length=1000, blank=True, verbose_name='Комментарий')
     commented_by = models.OneToOneField(User, related_name='comment', on_delete=models.CASCADE,
                                         verbose_name='Комментарий пользователя')
-    comment_to_comment = models.ForeignKey('Comment', on_delete=models.CASCADE, related_name='commented_comment',
-                                           verbose_name='Комментарий на комментарий')
+    comment_to_comment = models.ForeignKey('self', on_delete=models.CASCADE, related_name='commented_comment',
+                                           verbose_name='Комментарий к комментарию', blank=True, null=True)
 
     def __str__(self):
-        return self.commented_to
+        return self.comment
 
