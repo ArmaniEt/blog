@@ -4,6 +4,8 @@
 {% block content %}
     <h2 class="mb-4">Список авторов: </h2>
     {% for user in user_list %}
-        <p><a href="{% url 'usr_det_view' user.pk %}">{{ user.name }} {{ user.email }}</a></p><hr>
+        <div class="list-group">
+            <a href="{% url 'usr_det_view' user.pk %}" class="list-group-item list-group-item-action">{{ user.name }} {{ user.email }}</a>
+        </div>
     {% endfor %}
 {% endblock %}

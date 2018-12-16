@@ -1,10 +1,17 @@
 {% extends 'base.html' %}
 {% block title %}Статья{% endblock %}
 {% block content %}
-    <h2 class="mb-4">Сатья: </h2>
-        <h4>{{ article.title }}</h4>
-        <p>{{ article.text }}</p>
-    <h4>Комментарии: </h4>
+    <div class="card">
+        <div class="card-header">
+            <h4>{{ article.title }}</h4>
+        </div>
+        <div class="card-body">
+            <blockquote class="blockquote mb-0">
+                <p>{{ article.text }}</p>
+            </blockquote>
+        </div>
+    </div>
+    <h4 class="mt-4">Комментарии: </h4>
     <div class="alert alert-primary">
         {% for comment in article.comment_to.all %}
             <p>{{ comment.comment }}</p>

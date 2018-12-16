@@ -6,6 +6,8 @@
 {% block content %}
     <h1 class="mb-4">Список статей: </h1>
     {% for article in article_list %}
-        <p><a href="{% url 'article_view' article.pk%}">{{ article.title }}</a></p><hr>
+        <div class="list-group">
+            <a href="{% url 'article_view' article.pk%}" class="list-group-item list-group-item-action">{{ article.title }}</a>
+        </div>
     {% endfor %}
 {% endblock %}
