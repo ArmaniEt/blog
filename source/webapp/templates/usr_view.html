@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Обзор Автора{% endblock %}
+{% block menu %}
+{% endblock %}
+{% block content %}
+    <h3>Список статей Автора: </h3>
+    {% for usr_article in user.art_author.all %}
+        <p><a href="{% url 'article_view' usr_article.pk %}">{{ usr_article.title }}</a></p>
+    {% endfor %}
+    <h3>Список избранных статей автора: </h3>
+    {% for fav_art in user.favorites.all %}
+        <p><a href="{% url 'article_view' fav_art.pk %}">{{ fav_art }}</a></p>
+    {% endfor %}
+{% endblock %}

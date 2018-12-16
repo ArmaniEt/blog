@@ -13,7 +13,7 @@ class User(models.Model):
 
 class Article(models.Model):
     title = models.CharField(max_length=100, verbose_name='Заголовок')
-    author = models.ForeignKey(User, on_delete=models.PROTECT, verbose_name='Автор')
+    author = models.ForeignKey(User, related_name='art_author', on_delete=models.PROTECT, verbose_name='Автор')
     text = models.TextField(max_length=3000, verbose_name='Текст статьи')
     created_at = models.DateField(default=datetime.now, verbose_name='Дата создания')
 
@@ -25,7 +25,7 @@ class Comment(models.Model):
     commented_to = models.ForeignKey(Article, on_delete=models.CASCADE, null=True,
                                      related_name='comment_to', verbose_name='Комментарий к статье', blank=True)
     comment = models.TextField(max_length=1000, blank=True, verbose_name='Комментарий')
-    commented_by = models.OneToOneField(User, related_name='comment', on_delete=models.CASCADE,
+    commented_by = models.ForeignKey(User, related_name='comment', on_delete=models.CASCADE,
                                         verbose_name='Прокомментировано пользователем')
     comment_to_comment = models.ForeignKey('self', on_delete=models.CASCADE, related_name='commented_comment',
                                            verbose_name='Комментарий к комментарию', blank=True, null=True)
