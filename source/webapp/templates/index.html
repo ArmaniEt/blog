@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block title %}Статьи{% endblock %}
+{% block content %}
+    <h1 class="mb-4">Список статей: </h1>
+    {% for article in article_list %}
+        <p><a href="{% url 'article_view' article.pk%}">{{ article.title }}</a></p><hr>
+    {% endfor %}
+{% endblock %}

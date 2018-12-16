@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Статья{% endblock %}
+{% block content %}
+    <h2 class="mb-4">Сатья: </h2>
+        <h4>{{ article.title }}</h4>
+        <p>{{ article.text }}</p>
+    <h4>Комментарии: </h4>
+    <div class="alert alert-primary">
+        {% for comment in article.comment_to.all %}
+            <p>{{ comment.comment }}</p>
+            <p>Прокомментировал: <br> {{ comment.commented_by }}</p><hr>
+        {% endfor %}
+    </div>
+    <div class="float-right text-right">
+        {% for rating in article.art_rating.all %}
+            <p>Оценка: {{ rating.rating }}</p>
+            <p>by {{ rating.user }}</p>
+        {% endfor %}
+    </div>
+
+{% endblock %}

@@ -1,6 +1,7 @@
 from django.db import models
 from datetime import datetime
 
+
 class User(models.Model):
     name = models.CharField(max_length=200, verbose_name='Имя пользователя')
     email = models.CharField(max_length=100, verbose_name='Почта')
@@ -21,8 +22,8 @@ class Article(models.Model):
 
 
 class Comment(models.Model):
-    commented_to = models.OneToOneField(Article, on_delete=models.CASCADE, null=True,
-                                        related_name='comment_to', verbose_name='Комментарий к статье', blank=True)
+    commented_to = models.ForeignKey(Article, on_delete=models.CASCADE, null=True,
+                                     related_name='comment_to', verbose_name='Комментарий к статье', blank=True)
     comment = models.TextField(max_length=1000, blank=True, verbose_name='Комментарий')
     commented_by = models.OneToOneField(User, related_name='comment', on_delete=models.CASCADE,
                                         verbose_name='Прокомментировано пользователем')
