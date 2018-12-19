@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Изменение{% endblock %}
+{% block content %}
+    <h2>Изменить статью: {{ article.title }} </h2>
+    <form action="{% url 'article_update' form.instance.pk %}" method="post">
+        {% csrf_token %}
+        {% for field in form %}
+           <p class="text-center">{{ field.label_tag }}</p> <p class="text-center">{{ field }}</p><br>
+        {% endfor %}
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+        </div>
+
+    </form>
+{% endblock %}

@@ -37,3 +37,10 @@ class ArticleCreateView(CreateView):
     template_name = 'article_create.html'
     form_class = ArticleForm
     success_url = reverse_lazy('index')
+
+
+class ArticleUpdateView(UpdateView):
+    model = Article
+    template_name = 'article_update.html'
+    form_class = ArticleForm
+    success_url = reverse_lazy('index')
