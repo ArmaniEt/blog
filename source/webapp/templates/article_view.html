@@ -12,12 +12,15 @@
         </div>
     </div>
     <h4 class="mt-4">Комментарии: </h4>
-    <div class="alert alert-primary">
-        {% for comment in article.comment_to.all %}
-            <p>{{ comment.comment }}</p>
-            <p>Прокомментировал: <br> {{ comment.commented_by }}</p><hr>
-        {% endfor %}
-    </div>
+    {% if article.comment_to.all %}
+        <div class="alert alert-primary">
+            {% for comment in article.comment_to.all %}
+                <p>{{ comment.comment }}</p>
+                <p>Прокомментировал: <br> {{ comment.commented_by }}</p>
+                <p><a href="{% url 'comment_update' comment.pk %}">Редактировать комментарий</a></p><hr>
+            {% endfor %}
+        </div>
+    {% endif %}
     <div class="float-right text-right">
         {% for rating in article.art_rating.all %}
             <p>Оценка: {{ rating.rating }}</p>
