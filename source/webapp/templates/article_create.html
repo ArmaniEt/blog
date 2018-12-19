@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Создание{% endblock %}
+{% block content %}
+    <h2>Новая статья: </h2>
+    <form action="{% url 'article_create' %}" method="post">
+        {% csrf_token %}
+        {% for field in form %}
+           <p class="text-center">{{ field.label_tag }}</p> <p class="text-center">{{ field }}</p><br>
+        {% endfor %}
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+        </div>
+
+    </form>
+{% endblock %}
