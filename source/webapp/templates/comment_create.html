@@ -2,7 +2,7 @@
 {% block title %}Комментировать{% endblock %}
 {% block content %}
     <h3>Комментировать статью: {{ comment.commented_to.title }}</h3>
-    <form action="{% url 'comment_create'%}" method="post">
+    <form method="post">
         {% csrf_token %}
         {% for field in form %}
            <p>{{ field.label_tag }}</p> <p>{{ field }}</p><br>

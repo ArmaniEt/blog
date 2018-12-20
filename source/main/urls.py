@@ -26,7 +26,7 @@ urlpatterns = [
     path('user/<int:pk>', UserDetailView.as_view(), name='usr_det_view'),
     path('article/create', ArticleCreateView.as_view(), name='article_create'),
     path('user/<int:pk>/update', ArticleUpdateView.as_view(), name='article_update'),
-    path('article/comment', CommentCreateView.as_view(), name='comment_create'),
+    path('article/<int:pk>/comment', CommentCreateView.as_view(), name='comment_create'),
     path('article/comment/<int:pk>/update', CommentUpdateView.as_view(), name='comment_update')
 
 

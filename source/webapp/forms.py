@@ -16,7 +16,7 @@ class ArticleForm(forms.ModelForm):
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        exclude = ['comment_to_comment']
+        exclude = ['comment_to_comment', 'commented_to']
 
 
 class UpdateCommentForm(forms.ModelForm):

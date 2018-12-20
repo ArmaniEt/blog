@@ -2,6 +2,7 @@ from django.views.generic import ListView, DetailView, FormView, CreateView, Upd
 from webapp.models import Article, User, Comment
 from webapp.forms import ArticleSearchForm, ArticleForm, CommentForm, UpdateCommentForm
 from django.urls import reverse_lazy, reverse
+from django.shortcuts import get_object_or_404
 
 
 class ArticleListView(ListView, FormView):
@@ -54,6 +55,9 @@ class CommentCreateView(CreateView):
     def get_success_url(self):
         return reverse('article_view', kwargs={'pk': self.object.commented_to.pk})
 
+    def form_valid(self, form):
+        form.instance.created_to = get_object_or_404(Article, pk=self.kwargs['pk'])
+        return super().form_valid(form)
 
 class CommentUpdateView(UpdateView):
     model = Comment
