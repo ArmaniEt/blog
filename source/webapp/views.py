@@ -13,7 +13,7 @@ class ArticleListView(ListView, FormView):
     def get_queryset(self):
         article_name = self.request.GET.get('article_name')
         if article_name:
-            return self.model.objects.filter(title__icontains=article_name)
+            return self.model.objects.filter(title__icontains=article_name) | self.model.objects.filter(text__icontains=article_name)
         else:
             return self.model.objects.all()
 
@@ -58,6 +58,7 @@ class CommentCreateView(CreateView):
     def form_valid(self, form):
         form.instance.created_to = get_object_or_404(Article, pk=self.kwargs['pk'])
         return super().form_valid(form)
+
 
 class CommentUpdateView(UpdateView):
     model = Comment
