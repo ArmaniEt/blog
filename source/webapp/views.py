@@ -56,7 +56,7 @@ class CommentCreateView(CreateView):
         return reverse('article_view', kwargs={'pk': self.object.commented_to.pk})
 
     def form_valid(self, form):
-        form.instance.created_to = get_object_or_404(Article, pk=self.kwargs['pk'])
+        form.instance.commented_to = get_object_or_404(Article, pk=self.kwargs['pk'])
         return super().form_valid(form)
 
 
